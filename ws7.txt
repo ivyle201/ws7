@@ -1,0 +1,47 @@
+Script started on 2022-10-25 00:28:11-04:00
+vivian@sjsu:~[vivian@sjsu ~]$ 
+vivian@sjsu:~[vivian@sjsu ~]$ 
+vivian@sjsu:~[vivian@sjsu ~]$ mkdir ws7
+vivian@sjsu:~[vivian@sjsu ~]$ cd ws7
+vivian@sjsu:~/ws7[vivian@sjsu ws7]$ 
+
+
+Work with the Amazon reviews dataset:
+Select your favorite product. You can work with the one product file you used in the last worksheet #6.
+Examine the review_body column in the amazon reviews file for a product of your choice.
+Remove all commas, dots, semicolons, and these stopwords:  and or if in it.
+Remove all html tags, such as <br />
+You can search for <.../> with sed.
+Keep only the review_body column and output to a new file.
+
+
+# grep for product ID 076450861X, cut the review body column (14) and remove all the things as instructed.
+
+
+[vivian@sjsu ws7]$ grep "076450861X" ../amazon_reviews_us_Books_v1_02.tsv | cut -f14 
+I've fostered rabbits for the local SPCA, and this book definitely helped me understand rabbits and their behavior.  I would recommend it for any rabbit owner, as it contains a lot of information.   <br /> <br />I had spent a considerable time searching the internet for information on rabbits, and if I'd bought this book first, I could have saved a lot of time and learned a lot more a lot faster.
+FINALLY - someone who wrote the TRUTH about good rabbit care (for the most part). I'm glad to see a book out there that isn't jaded by the House Rabbit Society. Would like to see more influence from the ARBA (Yes, they promote pet rabbits too!) <br /> <br />But the book is filled with good and correct information. Including the fact that your rabbit DOESN'T need to be kept indoors like some people think.  <br /> <br />I highly recommend this book over most of the rabbit books out there on the market.  <br /> <br />KUDOS and keep up the good work.
+This book is a great introduction to the world of the companion rabbit. It provides quick access to easy to understand tibits about common rabbit concerns. It's written in a manner that is able to keep most people's attention and interest. <br />The only problem I have with the book is the fact that it doesn't emphasize that rabbits should not be kept in hutches. Rabbits, regardless of size, should be kept in a set-up that is more akin to that of a dog pen.  An area that measures approximately four feet by four feet that is fenced off INSIDE your home will be a better set-up for your new lagomorph. They need space to run around and play while you are at work or school and the wire bottom of pet-store rabbit cages can be very harsh on their feet. They do not have foot-pads like dogs or cats. If you value the health of your new companion, please use a dog pen.<br />I recommend looking into adopting a rabbit from your local House Rabbit Society chapter ([...] Rabbits from pet stores are often sick and not litterbox trained (yes, they are easily trained and very clean animals).<br />That all said, please read this book before you purchase a bunny.  I also recommend reading &quot;The House Rabbit Handbook: Living With an Urban Rabbit&quot; and &quot;Rabbit Health in the 21st Century.&quot; Rabbits are much different from dogs and cats and have special health concerns, but can make great pets for the right people.
+This book is a must-have for new rabbit owners, and even people who've had rabbits for years could benefit from it.  It explains the responsibilities that come with caring for a rabbit, and it does so in very clear language...but it doesn't make you feel like a dummy.  It outlines the physical needs of rabbits, but I especially appreciate how it addresses rabbits' often-overlooked psychological needs as well.  This is a great starter book...I recommend bringing it home the same day as your new bunny, like I did.
+Excellent book for first time rabbit guardians. Its the next best thing to speaking fluent rabbit. Its easy to understand and packed with very useful information. Its a good companion book for the House Rabbit Handbook or Why does my rabbit...? books. It is definately a good investment.
+
+ 
+[vivian@sjsu ws7]$ grep "076450861X" ../amazon_reviews_us_Books_v1_02.tsv | cut -f14 | sed -r 's/\[.+\]//g; s/[\.,;]//g; s/\b(and|or|if|in|it)\b//ig; s/<\w+ \/?>//g' > filtered_cut14_amazon_review_body_076450861X.tsv
+vivian@sjsu:~/ws7[vivian@sjsu ws7]$ 
+vivian@sjsu:~/ws7[vivian@sjsu ws7]$ 
+vivian@sjsu:~/ws7[vivian@sjsu ws7]$ cat filtered_cut14_amazon_review_body_076450861X.tsv 
+I've fostered rabbits for the local SPCA  this book definitely helped me understand rabbits  their behavior  I would recommend  for any rabbit owner as  contains a lot of information    I had spent a considerable time searching the internet for information on rabbits   I'd bought this book first I could have saved a lot of time  learned a lot more a lot faster
+FINALLY - someone who wrote the TRUTH about good rabbit care (for the most part) I'm glad to see a book out there that isn't jaded by the House Rabbit Society Would like to see more influence from the ARBA (Yes they promote pet rabbits too!)  But the book is filled with good  correct information Including the fact that your rabbit DOESN'T need to be kept indoors like some people think   I highly recommend this book over most of the rabbit books out there on the market   KUDOS  keep up the good work
+This book is a great introduction to the world of the companion rabbit  provides quick access to easy to understand tibits about common rabbit concerns 's written  a manner that is able to keep most people's attention  interest The only problem I have with the book is the fact that  doesn't emphasize that rabbits should not be kept  hutches Rabbits regardless of size should be kept  a set-up that is more akin to that of a dog pen  An area that measures approximately four feet by four feet that is fenced off INSIDE your home will be a better set-up for your new lagomorph They need space to run around  play while you are at work  school  the wire bottom of pet-store rabbit cages can be very harsh on their feet They do not have foot-pads like dogs  cats  you value the health of your new companion please use a dog penI recommend looking into adopting a rabbit from your local House Rabbit Society chapter ( Rabbits from pet stores are often sick  not litterbox trained (yes they are easily trained  very clean animals)That all said please read this book before you purchase a bunny  I also recommend reading &quotThe House Rabbit Handbook: Living With an Urban Rabbit&quot  &quotRabbit Health  the 21st Century&quot Rabbits are much different from dogs  cats  have special health concerns but can make great pets for the right people
+This book is a must-have for new rabbit owners  even people who've had rabbits for years could benefit from    explains the responsibilities that come with caring for a rabbit   does so  very clear languagebut  doesn't make you feel like a dummy   outlines the physical needs of rabbits but I especially appreciate how  addresses rabbits' often-overlooked psychological needs as well  This is a great starter bookI recommend bringing  home the same day as your new bunny like I did
+Excellent book for first time rabbit guardians Its the next best thing to speaking fluent rabbit Its easy to understand  packed with very useful information Its a good companion book for the House Rabbit Handbook  Why does my rabbit? books  is definately a good investment
+vivian@sjsu:~/ws7[vivian@sjsu ws7]$ 
+vivian@sjsu:~/ws7[vivian@sjsu ws7]$ history > cmds.log
+vivian@sjsu:~/ws7[vivian@sjsu ws7]$ 
+vivian@sjsu:~/ws7[vivian@sjsu ws7]$ 
+vivian@sjsu:~/ws7[vivian@sjsu ws7]$ exit
+exit
+
+Script done on 2022-10-25 22:51:29-04:00
+[vivian@sjsu ~]$ 
+
